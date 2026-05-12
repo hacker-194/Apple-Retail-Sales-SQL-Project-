@@ -1,5 +1,4 @@
 
-
 create table stores(
 store_id varchar(10) primary key,
 Store_Name varchar(30),
@@ -34,7 +33,15 @@ constraint fk_products foreign key(product_id) references products(product_id)
 create table warranty(
 claim_id varchar(10) primary key,
 claim_date date,
-sale_id varchar(20),
+sale_id varchar(10),
 repair_status varchar(50),
 constraint fk_warranty foreign key(sale_id) references sales(sale_id)
 );
+
+SET datestyle = 'ISO, DMY';  -- date is not in standard formate so we change it into standard formate
+
+copy stores from 'D:\archive\stores.csv' delimiter ',' header csv;
+copy category from 'D:\archive\category.csv' delimiter ',' header csv;
+copy products from 'D:\archive\products.csv' delimiter ',' header csv;
+copy sales from 'D:\archive\sales.csv' delimiter ',' header csv;
+copy warranty from 'D:\archive\warranty.csv' delimiter ',' header csv;
